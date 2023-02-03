@@ -1,4 +1,5 @@
 using BookManagerAPI.Model;
+using BookManagerAPI.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +30,7 @@ namespace BookManagerAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BookContext>(x => x.UseSqlite("Data source=books.db"));
+            services.AddScoped<IBookRepository, BookRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
